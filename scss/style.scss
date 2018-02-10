@@ -1,0 +1,324 @@
+// Variables
+$app-aside: #292C3A;
+$app-main: darken($app-aside, 2%);
+
+* {
+  margin: 0; padding: 0;
+  box-sizing: border-box;
+  font-family: 'Muli', sans-serif;
+}
+
+html,body {
+  background: #EDF2F4;
+  overflow: hidden;
+}
+
+.app {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  &_inner {
+    background: #FFF;
+    width: 750px;
+    height: 550px;
+    display: flex;
+    border-radius: 9px;
+    box-shadow: 1px 5px 15px #CCC;
+    aside {
+      background: $app-aside;
+      flex: 1 0 220px;
+      display: flex;
+      justify-content: center;
+      border-top-left-radius: 7px;
+      border-bottom-left-radius: 7px;
+      .wallet {
+        margin: 0 auto;
+        .holder {
+          height: 370px;
+          overflow-y: auto;
+          overflow-x: hidden;
+        }
+        .card {
+          background: #ff0e0e99;
+          border-radius: 5px;
+          width: 180px;
+          height: 100px;
+          margin: 1em;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 0 1em;
+          flex-flow: row wrap;
+          cursor: pointer;
+          z-index: 1;
+          position: relative;
+          transition: all ease .45s;
+          &:last-of-type {
+            background: #EF3E5C;
+          }
+          &:before {
+            content: '';
+            background: url(http://speckycdn.sdm.netdna-cdn.com/wp-content/uploads/2012/10/world_map_06.jpg);
+            opacity: 0.2;
+            transform: translateX(-16px);
+            border-radius: 5px;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            position: absolute;
+            z-index: 0;
+          }
+          &_number, &_holder > p {
+            font-size: 10px;
+            color: #FFF;
+          }
+          &_holder {
+            width: 50%;
+          }
+          &_number {
+            width: 100%;
+          }
+          &_icon {
+            width: 20%;
+            > img {
+              width: 35px;
+              height: auto;
+            }
+          }
+        }
+      }
+    }
+    .add_a_card {
+      display: flex;
+      flex-flow: column wrap;
+      justify-content: center;
+      align-items: center;
+      color: #FFF;
+      margin: 4.5em auto;
+      cursor: pointer;
+      & > i {
+        font-size: 30px;
+      }
+      & > p {
+        font-size: 17px;
+      }
+    }
+    main {
+      background: $app-main;
+      flex: 1 1 480px;
+      border-top-right-radius: 7px;
+      border-bottom-right-radius: 7px;
+      position: relative;
+      .list {
+        overflow-y: auto;
+        overflow-x: hidden;
+        height: 440px;
+        .card {
+          background-color: cadetblue;
+          border-radius: 5px;
+          width: 170px;
+          height: 100px;
+          margin: 3em auto;
+          display: flex;
+          transform: scale(1.5);
+          justify-content: space-between;
+          align-items: center;
+          padding: 0 1em;
+          flex-flow: row wrap;
+          z-index: 1;
+          &:before {
+            content: '';
+            background: url(http://speckycdn.sdm.netdna-cdn.com/wp-content/uploads/2012/10/world_map_06.jpg);
+            opacity: 0.225;
+            transform: translateX(-16px);
+            border-radius: 5px;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            position: absolute;
+            z-index: -1;
+          }
+          &_number, &_holder, &_expiration, &_holder > p {
+            font-size: 10px;
+            color: #FFF;
+          }
+          &_holder {
+            width: 50%;
+          }
+          &_number {
+            width: 100%;
+          }
+          &_icon {
+            width: 20%;
+            > img {
+              width: 35px;
+              height: auto;
+            }
+          }
+        }
+        .transactions {
+          table {
+            width: 100%;
+            text-align: left;
+            color: #FFF;
+            padding: 1em;
+            border-spacing: 0;
+            thead {
+              border-bottom: 1px solid darken($app-main, 1%);
+              th {
+                padding: 0.5em 0;
+                color: #EB526B;
+              }
+            }
+            td {
+              border-top: 1px solid rgba(255, 255, 255, 0.015);
+              padding: 0.75em 0;
+            }
+          }
+          h1 {
+            background: #F03F5D;
+            color: #FFF;
+            cursor: pointer;
+            text-align: center;
+            margin: 2em auto;
+            width: 80%;
+            position: absolute;
+            left: 0;
+            right: 0;
+            padding: 0.2em;
+            border-radius: 7px;
+          }
+        }
+      }
+      .create {
+        opacity: 0;
+        transition: opacity .45s cubic-bezier(0.390, 0.575, 0.565, 1.000);
+        pointer-events: none;
+        .card {
+          background: #EF3E5C;
+          border-radius: 5px;
+          width: 170px;
+          height: 100px;
+          margin: 2em auto;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 0 1em;
+          flex-flow: row wrap;
+          z-index: 1;
+          position: relative;
+          &:before {
+            content: '';
+            background: url(http://speckycdn.sdm.netdna-cdn.com/wp-content/uploads/2012/10/world_map_06.jpg);
+            opacity: 0.2;
+            transform: translateX(-16px);
+            border-radius: 5px;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            position: absolute;
+            z-index: 0;
+          }
+          &_number, &_holder, &_expiration, &_holder > p {
+            font-size: 10px;
+            color: #FFF;
+            text-transform: capitalize;
+          }
+          &_holder {
+            width: 50%;
+          }
+          &_number {
+            width: 100%;
+          }
+          &_icon {
+            width: 20%;
+            > img {
+              width: 35px;
+              height: auto;
+            }
+          }
+        }
+      }
+      form {
+        background: $app-main;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transform: translateY(-430px);
+        border-top-right-radius: 7px;
+        border-bottom-right-radius: 7px;
+        z-index: 2;
+        height: 525px;
+        flex-flow: column wrap;
+        justify-content: space-around;
+        input[type="text"] {
+          background: transparent;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.015);
+          padding: 1em 0;
+          border-top: none;
+          border-left: none;
+          border-right: none;
+          width: 85%;
+          font-size: 18px;
+          outline: none;
+          color: #FFF;
+        }
+        input[type="submit"] {
+          background: darken($app-aside, 7%);
+          color: #FFF;
+          border: none;
+          padding: 1em;
+          width: 85%;
+          font-size: 18px;
+          outline: none;
+          border-radius: 7px;
+          cursor: pointer;
+          transition: all ease .15s;
+          &:hover {
+            background: rgba(239,62,92, 0.9);
+          }
+        }
+        i {
+          color: rgba(255, 255, 255, 0.7);
+          display: flex;
+          justify-content: flex-end;
+          width: 85%;
+          margin: 1em 0;
+          cursor: pointer;
+          &:hover {
+            color: rgba(255, 255, 255, 1);
+          }
+        }
+        .choose_a_card {
+          display: flex;
+          flex-flow: row wrap;
+          justify-content: center;
+          align-items: center;
+          > img {
+            margin: 0 1em;
+            width: 80px;
+            height: auto;
+            cursor: pointer;
+            padding: 0.6em;
+            border-radius: 7px;
+            transition: all ease .45s;
+          }
+          .selected {
+            background: darken($app-main, 5%);
+          }
+        }
+      }
+    }
+  }
+}
+
+::-webkit-input-placeholder {
+  color: #FFF;
+}
+
+::-webkit-scrollbar-thumb {
+  background: darken($app-main, 3%);
+  border-radius: 50px;
+  height: 50px;
+}

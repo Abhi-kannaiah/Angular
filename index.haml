@@ -1,0 +1,122 @@
+.app{'ng-app' => 'wallet-app', 'ng-cloak' => 'true'}
+  
+  .app_inner
+  
+    %aside
+    
+      .wallet
+      
+        .holder{'ng-controller' => 'walletController'}
+        
+          .card{'ng-repeat' => 'card in cards | orderBy:"id":true', 'ng-click' => 'index(card.id)'}
+            
+            .card_number
+            
+              %p {{card.cardNumber}}
+              
+            .card_holder
+              
+              %p {{card.cardHolder}}
+            
+              %p {{card.expiryDate}}
+              
+            .card_icon
+              
+              %img{:src => 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/217538/{{card.type}}.png'}
+              
+        .add_a_card
+          %i{:class => 'fa fa-plus'}
+          %p Add a card
+    
+    %main
+    
+      .list{'ng-controller' => 'walletController'}
+      
+        %ul{'ng-repeat' => 'card in cards', 'ng-show' => 'card.id == cardIndex'}
+        
+          .card
+            
+            .card_number
+            
+              %p {{card.cardNumber}}
+              
+            .card_holder
+              
+              %p {{card.cardHolder}}
+            
+              %p {{card.expiryDate}}
+              
+            .card_icon
+              
+              %img{:src => 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/217538/{{card.type}}.png'}
+              
+          .transactions
+          
+            %table
+            
+              %thead
+            
+                %th
+
+                  Date
+
+                %th
+
+                  Merchant
+
+                %th
+
+                  Spend
+              
+              %tr{'ng-repeat' => 'transaction in card.transactions'}
+              
+                %td
+                
+                  {{transaction.date}}
+                  
+                %td
+                
+                  {{transaction.merchant}}
+                  
+                %td
+                
+                  {{transaction.price | currency:"£"}}
+    
+    
+      .create
+
+        %form{'ng-controller' => 'addCardController as card'}
+
+          %i{:class => 'fa fa-times-circle'}
+
+          %input{:type => 'text', :placeholder => 'Enter card number', 'ng-model' => 'number', :class => 'number',}
+
+          %input{:type => 'text', :placeholder => 'Enter your name', 'ng-model' => 'name', :class => 'name'}
+
+          %input{:type => 'text', :placeholder => 'MM / YY', :class => 'expiry', 'ng-model' => 'expiry'}
+
+          .choose_a_card{'ng-controller' => 'addCardController'}
+
+            %img{:src => 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/217538/mastercard-curved-64px.png', 'ng-click' => 'choose("mastercard-curved-64px")'}
+
+            %img{:src => 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/217538/discover-curved-64px.png', 'ng-click' => 'choose("discover-curved-64px")'}
+
+            %img{:src => 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/217538/visa-curved-64px.png', 'ng-click' => 'choose("visa-curved-64px")', :class => 'selected'}
+
+            .card
+
+              .card_number
+
+                %p {{number}}
+
+              .card_holder
+
+                %p {{name}}
+
+                %p {{expiry}}
+
+              .card_icon
+
+                %img{:src => 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/217538/{{choice}}.png'}
+
+            %input{:type => 'submit', :value => 'Add card', 'ng-click' => 'addCard(number, name, expiry)'}
